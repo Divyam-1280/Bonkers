@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState, useCallback, useMemo, useEffect } from 'react';
 import {
   ReactFlow,
   Background,
@@ -14,14 +14,36 @@ import { nodeData, colorMap, getDescendantIds, hasChildren } from '../flowData';
 
 const nodeTypes = { custom: CustomNode };
 
-/* ── Layout constants ── */
-const NODE_W = 300;
-const NODE_H = 56;
-const H_GAP = 120;
-const V_GAP = 20;
+/* ── Responsive layout presets ── */
+const LAYOUT_PRESETS = {
+  desktop: { NODE_W: 280, NODE_H: 64, H_GAP: 160, V_GAP: 24 },
+  tablet:  { NODE_W: 240, NODE_H: 56, H_GAP: 120,  V_GAP: 20 },
+  mobile:  { NODE_W: 200, NODE_H: 52, H_GAP: 100,  V_GAP: 16 },
+};
+
+function getLayoutPreset() {
+  if (typeof window === 'undefined') return LAYOUT_PRESETS.desktop;
+  const w = window.innerWidth;
+  if (w <= 480) return LAYOUT_PRESETS.mobile;
+  if (w <= 768) return LAYOUT_PRESETS.tablet;
+  return LAYOUT_PRESETS.desktop;
+}
+
+/* Hook: returns layout config that updates on resize */
+function useResponsiveLayout() {
+  const [config, setConfig] = useState(getLayoutPreset);
+  useEffect(() => {
+    const onResize = () => setConfig(getLayoutPreset());
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+  return config;
+}
 
 /* ── Build visible nodes & edges from expanded state ── */
-function buildLayout(expandedSet) {
+function buildLayout(expandedSet, layoutCfg = LAYOUT_PRESETS.desktop) {
+  const { NODE_W, NODE_H, H_GAP, V_GAP } = layoutCfg;
+
   const visibleIds = new Set();
   visibleIds.add('total-order');
 
@@ -94,7 +116,7 @@ function buildLayout(expandedSet) {
 
   /* Execute both passes */
   computeSubtreeHeight('total-order');
-  positions['total-order'] = { x: 60, y: 300 };
+  positions['total-order'] = { x: 0, y: 300 };
   positionSubtree('total-order');
 
   /* Re-center root relative to its children */
@@ -105,7 +127,7 @@ function buildLayout(expandedSet) {
     const childYs = rootChildren.map((c) => positions[c.id]?.y ?? 0);
     const minY = Math.min(...childYs);
     const maxY = Math.max(...childYs);
-    positions['total-order'] = { x: 60, y: (minY + maxY) / 2 };
+    positions['total-order'] = { x: 0, y: (minY + maxY) / 2 };
   }
 
   const rfNodes = visibleNodes.map((n) => ({
@@ -143,10 +165,11 @@ function buildLayout(expandedSet) {
 export default function FlowChart() {
   const [expanded, setExpanded] = useState(new Set(['total-order']));
   const [toast, setToast] = useState(null);
+  const layoutConfig = useResponsiveLayout();
 
   const { nodes: layoutNodes, edges: layoutEdges } = useMemo(
-    () => buildLayout(expanded),
-    [expanded]
+    () => buildLayout(expanded, layoutConfig),
+    [expanded, layoutConfig]
   );
 
   const [nodes, setNodes, onNodesChange] = useNodesState(layoutNodes);
@@ -203,9 +226,16 @@ export default function FlowChart() {
         onNodeDoubleClick={onNodeDoubleClick}
         nodeTypes={nodeTypes}
         fitView
-        fitViewOptions={{ padding: 0.3 }}
-        minZoom={0.2}
-        maxZoom={2}
+        fitViewOptions={{ padding: 0.2 }}
+        minZoom={0.05}
+        maxZoom={2.5}
+        panOnDrag={true}
+        zoomOnPinch={true}
+        nodesDraggable={false}
+        nodesConnectable={false}
+        elementsSelectable={false}
+        panOnScroll={false}
+        preventScrolling={true}
         proOptions={{ hideAttribution: true }}
       >
         <Background color="rgba(0,0,0,0.07)" gap={32} size={1} variant="dots" />
@@ -238,3 +268,4 @@ export default function FlowChart() {
     </>
   );
 }
+

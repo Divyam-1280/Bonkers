@@ -24,14 +24,16 @@
   --accent-soft: rgba(99, 102, 241, 0.1);
   --radius: 10px;
   --radius-sm: 6px;
-  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
-  --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
-  --shadow-lg: 0 12px 40px rgba(0,0,0,0.12);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.12);
   --transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
   width: 100%;
   overflow: hidden;
@@ -160,6 +162,7 @@ html, body, #root {
 .react-flow__pane {
   cursor: grab;
 }
+
 .react-flow__pane:active {
   cursor: grabbing;
 }
@@ -222,14 +225,16 @@ html, body, #root {
 
 .custom-node {
   position: relative;
-  min-width: 210px;
-  max-width: 340px;
-  padding: 12px 16px;
+  width: 280px;
+  height: 64px;
+  padding: 0 16px;
   border-radius: var(--radius);
   background: var(--node-bg);
   border: 1px solid var(--node-border);
   cursor: pointer;
   overflow: hidden;
+  display: flex;
+  align-items: center;
   transition:
     transform var(--transition),
     box-shadow var(--transition),
@@ -243,6 +248,7 @@ html, body, #root {
     transform: translateX(-16px) scale(0.95);
     filter: blur(4px);
   }
+
   100% {
     opacity: 1;
     transform: translateX(0) scale(1);
@@ -281,6 +287,7 @@ html, body, #root {
   display: flex;
   align-items: center;
   gap: 10px;
+  width: 100%;
 }
 
 .node-icon {
@@ -309,11 +316,18 @@ html, body, #root {
 }
 
 .node-label {
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   font-weight: 500;
-  line-height: 1.35;
+  line-height: 1.25;
   color: var(--node-text);
   letter-spacing: -0.005em;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
 }
 
 .node-count {
@@ -397,6 +411,7 @@ html, body, #root {
     opacity: 0;
     transform: translateX(-50%) translateY(12px) scale(0.96);
   }
+
   to {
     opacity: 1;
     transform: translateX(-50%) translateY(0) scale(1);
@@ -431,7 +446,9 @@ html, body, #root {
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* ── Scrollbar ── */
@@ -453,26 +470,212 @@ html, body, #root {
   background: rgba(0, 0, 0, 0.2);
 }
 
-/* ── Responsive ── */
+/* ═══════════════════════════════════════════════════════════════
+   Responsive — Tablet (≤ 768px)
+   ═══════════════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
-  .header-content {
-    flex-direction: column;
-    gap: 8px;
-    align-items: flex-start;
-  }
-
   .app-header {
     height: auto;
-    padding: 12px 16px;
+    padding: 10px 16px;
   }
 
+  .header-content {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .header-title {
+    font-size: 0.85rem;
+  }
+
+  .header-subtitle {
+    font-size: 0.65rem;
+  }
+
+  .logo-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  /* Hints — compact */
   .header-hint {
-    flex-direction: column;
+    padding: 3px 4px;
+  }
+
+  .hint-item {
+    font-size: 0.62rem;
+    padding: 0 5px;
     gap: 4px;
   }
 
-  .hint-divider {
-    width: 100%;
-    height: 1px;
+  .hint-item kbd {
+    font-size: 0.58rem;
+    padding: 1px 4px;
+  }
+
+  /* Nodes — fixed width/height matching ReactFlow layout */
+  .custom-node {
+    width: 240px;
+    height: 56px;
+    padding: 0 12px;
+  }
+
+  .node-label {
+    font-size: 0.72rem;
+  }
+
+  .node-count {
+    font-size: 0.64rem;
+  }
+
+  .node-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .node-content {
+    gap: 8px;
+  }
+
+  /* Controls — smaller buttons */
+  .flow-controls button {
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+  /* MiniMap — smaller */
+  .flow-minimap {
+    width: 100px !important;
+    height: 60px !important;
+  }
+
+  /* Toast — full width */
+  .toast {
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    transform: none;
+    font-size: 0.72rem;
+    padding: 8px 14px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Responsive — Mobile (≤ 480px)
+   ═══════════════════════════════════════════════════════════════ */
+@media (max-width: 480px) {
+  .app-header {
+    padding: 8px 12px;
+  }
+
+  .header-left {
+    gap: 8px;
+  }
+
+  .logo-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+  }
+
+  .header-title {
+    font-size: 0.78rem;
+  }
+
+  /* Hide subtitle + hints on small phones */
+  .header-subtitle {
+    display: none;
+  }
+
+  .header-right {
+    display: none;
+  }
+
+  /* Nodes — compact for phone screens */
+  .custom-node {
+    width: 200px;
+    height: 52px;
+    padding: 0 10px;
+    border-radius: 8px;
+  }
+
+  .node-accent-bar {
+    width: 2.5px;
+  }
+
+  .node-label {
+    font-size: 0.66rem;
+    line-height: 1.3;
+  }
+
+  .node-count {
+    font-size: 0.6rem;
+  }
+
+  .node-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+  }
+
+  .node-content {
+    gap: 6px;
+  }
+
+  .node-label-group {
+    gap: 2px;
+  }
+
+  .expand-chevron {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* Handles always visible (no hover on touch) */
+  .node-handle {
+    opacity: 1 !important;
+    width: 5px !important;
+    height: 5px !important;
+  }
+
+  /* Hide minimap — wastes space on phone */
+  .flow-minimap {
+    display: none !important;
+  }
+
+  /* Toast */
+  .toast {
+    bottom: 12px;
+    left: 10px;
+    right: 10px;
+    font-size: 0.68rem;
+    padding: 7px 12px;
+    border-radius: 8px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Touch devices — better tap targets, no hover jank
+   ═══════════════════════════════════════════════════════════════ */
+@media (hover: none) and (pointer: coarse) {
+  .flow-controls button {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  .node-handle {
+    opacity: 1 !important;
+  }
+
+  /* Replace hover lift with active press feedback */
+  .custom-node:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .custom-node:active {
+    transform: scale(0.97);
+    transition: transform 100ms ease;
   }
 }
