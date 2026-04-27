@@ -1,0 +1,461 @@
+/* ═══════════════════════════════════════════════════════════════
+   Order Flow Dashboard — Professional Clean Theme
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Reset & Root ── */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-primary: #09090b;
+  --bg-elevated: #18181b;
+  --bg-surface: #27272a;
+  --text-primary: #fafafa;
+  --text-secondary: #a1a1aa;
+  --text-muted: #71717a;
+  --border: rgba(255, 255, 255, 0.07);
+  --border-strong: rgba(255, 255, 255, 0.12);
+  --accent: #6366f1;
+  --accent-soft: rgba(99, 102, 241, 0.12);
+  --radius: 10px;
+  --radius-sm: 6px;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.4);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,0.5);
+  --transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── App Container ── */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: var(--bg-primary);
+}
+
+/* ── Header ── */
+.app-header {
+  flex-shrink: 0;
+  padding: 0 24px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--border);
+  z-index: 10;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1800px;
+  margin: 0 auto;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.header-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.header-subtitle {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-top: 1px;
+  font-weight: 400;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.header-hint {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 4px 6px;
+  border-radius: var(--radius-sm);
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+}
+
+.hint-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 8px;
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+}
+
+.hint-item kbd {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  font-family: inherit;
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.hint-divider {
+  width: 1px;
+  height: 16px;
+  background: var(--border-strong);
+}
+
+/* ── Flow Canvas ── */
+.flow-canvas {
+  flex: 1;
+  position: relative;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(99, 102, 241, 0.04) 0%, transparent 70%),
+    var(--bg-primary);
+}
+
+/* ── React Flow Overrides ── */
+.react-flow__background {
+  background: transparent !important;
+}
+
+.react-flow__pane {
+  cursor: grab;
+}
+.react-flow__pane:active {
+  cursor: grabbing;
+}
+
+/* Edges */
+.react-flow__edge-path {
+  transition: stroke-opacity 0.3s ease;
+}
+
+/* Controls */
+.flow-controls {
+  background: var(--bg-elevated) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
+  box-shadow: var(--shadow-md) !important;
+  overflow: hidden;
+}
+
+.flow-controls button {
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid var(--border) !important;
+  color: var(--text-muted) !important;
+  width: 32px !important;
+  height: 32px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition);
+}
+
+.flow-controls button:hover {
+  background: var(--accent-soft) !important;
+  color: var(--accent) !important;
+}
+
+.flow-controls button:last-child {
+  border-bottom: none !important;
+}
+
+.flow-controls button svg {
+  fill: currentColor !important;
+}
+
+/* MiniMap */
+.flow-minimap {
+  background: var(--bg-elevated) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Custom Node Styles
+   ═══════════════════════════════════════════════════════════════ */
+
+.custom-node {
+  position: relative;
+  min-width: 210px;
+  max-width: 340px;
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  background: var(--node-bg);
+  border: 1px solid var(--node-border);
+  cursor: pointer;
+  overflow: hidden;
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition),
+    border-color var(--transition);
+  animation: node-enter 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes node-enter {
+  0% {
+    opacity: 0;
+    transform: translateX(-16px) scale(0.95);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.custom-node:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 0 0 1px var(--node-border),
+    0 8px 24px rgba(0, 0, 0, 0.4),
+    0 0 24px color-mix(in srgb, var(--node-border) 15%, transparent);
+}
+
+/* Accent bar on the left edge */
+.node-accent-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--node-border);
+  border-radius: 3px 0 0 3px;
+  opacity: 0.8;
+  transition: opacity var(--transition), width var(--transition);
+}
+
+.custom-node:hover .node-accent-bar {
+  opacity: 1;
+  width: 4px;
+}
+
+/* Node content layout */
+.node-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.node-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--node-border) 15%, transparent);
+  color: var(--node-accent);
+  flex-shrink: 0;
+  transition: background var(--transition);
+}
+
+.custom-node:hover .node-icon {
+  background: color-mix(in srgb, var(--node-border) 22%, transparent);
+}
+
+.node-label {
+  flex: 1;
+  font-size: 0.78rem;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--node-text);
+  letter-spacing: -0.005em;
+}
+
+.expand-chevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 5px;
+  color: var(--node-accent);
+  flex-shrink: 0;
+  transition: background var(--transition), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.custom-node:hover .expand-chevron {
+  background: color-mix(in srgb, var(--node-border) 15%, transparent);
+}
+
+/* Handles */
+.node-handle {
+  width: 6px !important;
+  height: 6px !important;
+  background: var(--node-border) !important;
+  border: 1.5px solid var(--bg-primary) !important;
+  border-radius: 50% !important;
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.custom-node:hover .node-handle {
+  opacity: 1;
+}
+
+/* Parent-specific: subtle pulsing ring on hover */
+.parent-node::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: calc(var(--radius) + 2px);
+  border: 1px solid var(--node-border);
+  opacity: 0;
+  transition: opacity var(--transition);
+  pointer-events: none;
+}
+
+.parent-node:hover::before {
+  opacity: 0.25;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Toast Notification
+   ═══════════════════════════════════════════════════════════════ */
+
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: var(--radius);
+  font-size: 0.78rem;
+  font-weight: 500;
+  z-index: 1000;
+  animation: toast-in 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: var(--shadow-lg);
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(12px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
+
+.toast-loading {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+
+.toast-success {
+  background: #052e16;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: #4ade80;
+}
+
+.toast-error {
+  background: #450a0a;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #f87171;
+}
+
+.toast-spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--border-strong);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .app-header {
+    height: auto;
+    padding: 12px 16px;
+  }
+
+  .header-hint {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .hint-divider {
+    width: 100%;
+    height: 1px;
+  }
+}
