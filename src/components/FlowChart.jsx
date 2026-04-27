@@ -208,11 +208,11 @@ export default function FlowChart() {
         maxZoom={2}
         proOptions={{ hideAttribution: true }}
       >
-        <Background color="rgba(255,255,255,0.02)" gap={32} size={1} variant="dots" />
+        <Background color="rgba(0,0,0,0.07)" gap={32} size={1} variant="dots" />
         <Controls className="flow-controls" showInteractive={false} />
         <MiniMap
           nodeColor={(node) => colorMap[node.data?.color]?.border || '#3b82f6'}
-          maskColor="rgba(0,0,0,0.75)"
+          maskColor="rgba(255,255,255,0.75)"
           className="flow-minimap"
         />
       </ReactFlow>
