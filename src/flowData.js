@@ -3,7 +3,7 @@
 export const nodeData = [
   {
     id: 'total-order',
-    label: 'Total Order',
+    label: 'Total SKU',
     count: 142174,
     link: 'https://docs.google.com/spreadsheets/d/1fydToXk4Obb2VqcBYZULmwPSO_vohspj/edit?usp=sharing&ouid=108625963842783784299&rtpof=true&sd=true',
     color: 'root',
