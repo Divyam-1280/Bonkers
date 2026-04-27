@@ -298,13 +298,28 @@ html, body, #root {
   background: color-mix(in srgb, var(--node-border) 22%, transparent);
 }
 
-.node-label {
+.node-label-group {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.node-label {
   font-size: 0.78rem;
   font-weight: 500;
   line-height: 1.35;
   color: var(--node-text);
   letter-spacing: -0.005em;
+}
+
+.node-count {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--node-accent);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
 }
 
 .expand-chevron {

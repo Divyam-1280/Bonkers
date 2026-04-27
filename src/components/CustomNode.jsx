@@ -45,9 +45,16 @@ function CustomNode({ data }) {
           )}
         </div>
 
-        <span className="node-label">
-          {data.label}
-        </span>
+        <div className="node-label-group">
+          <span className="node-label">
+            {data.label}
+          </span>
+          {data.count != null && (
+            <span className="node-count">
+              {data.count.toLocaleString()}
+            </span>
+          )}
+        </div>
 
         {isParent && (
           <span className="expand-chevron">

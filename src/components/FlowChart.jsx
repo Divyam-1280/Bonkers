@@ -114,6 +114,7 @@ function buildLayout(expandedSet) {
     position: positions[n.id] || { x: 0, y: 0 },
     data: {
       label: n.label,
+      count: n.count,
       color: n.color,
       link: n.link,
       nodeId: n.id,
