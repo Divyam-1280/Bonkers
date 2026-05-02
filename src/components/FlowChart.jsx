@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo, useEffect } from 'react';
+import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react';
 import {
   ReactFlow,
   Background,
@@ -168,6 +168,12 @@ export default function FlowChart() {
   const [toast, setToast] = useState(null);
   const layoutConfig = useResponsiveLayout();
 
+  /* Show toast notification */
+  const showToast = useCallback((message, type = 'info') => {
+    setToast({ message, type });
+    setTimeout(() => setToast(null), 3000);
+  }, []);
+
   const { nodes: layoutNodes, edges: layoutEdges } = useMemo(
     () => buildLayout(expanded, layoutConfig),
     [expanded, layoutConfig]
@@ -181,40 +187,42 @@ export default function FlowChart() {
     setEdges(layoutEdges);
   }, [layoutNodes, layoutEdges, setNodes, setEdges]);
 
-  /* Show toast notification */
-  const showToast = useCallback((message, type = 'info') => {
-    setToast({ message, type });
-    setTimeout(() => setToast(null), 3000);
-  }, []);
+  const clickTimeoutRef = useRef(null);
 
-  /* Single click → expand/collapse */
+  /* Single click → expand/collapse, Double click → open link */
   const onNodeClick = useCallback((_event, node) => {
-    const id = node.id;
-    if (!hasChildren(id)) return;
-
-    setExpanded((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) {
-        next.delete(id);
-        getDescendantIds(id).forEach((did) => next.delete(did));
-      } else {
-        next.add(id);
-      }
-      return next;
-    });
-  }, []);
-
-  /* Double click → open Google Drive link in a new tab */
-  const onNodeDoubleClick = useCallback(
-    (_event, node) => {
+    if (clickTimeoutRef.current) {
+      // Second click detected within 250ms -> It's a double click
+      clearTimeout(clickTimeoutRef.current);
+      clickTimeoutRef.current = null;
+      
       const nd = nodeData.find((n) => n.id === node.id);
-      if (nd?.link) {
+      if (nd && nd.link) {
         window.open(nd.link, '_blank', 'noopener,noreferrer');
         showToast(`Opening ${nd.label} in Google Drive`, 'success');
       }
-    },
-    [showToast]
-  );
+      return;
+    }
+
+    // First click -> wait 250ms to see if a second click arrives
+    clickTimeoutRef.current = setTimeout(() => {
+      clickTimeoutRef.current = null;
+      
+      const id = node.id;
+      if (!hasChildren(id)) return;
+
+      setExpanded((prev) => {
+        const next = new Set(prev);
+        if (next.has(id)) {
+          next.delete(id);
+          getDescendantIds(id).forEach((did) => next.delete(did));
+        } else {
+          next.add(id);
+        }
+        return next;
+      });
+    }, 250);
+  }, [showToast]);
 
   return (
     <>
@@ -224,12 +232,11 @@ export default function FlowChart() {
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         onNodeClick={onNodeClick}
-        onNodeDoubleClick={onNodeDoubleClick}
         nodeTypes={nodeTypes}
         fitView
         fitViewOptions={{ padding: 0.2 }}
-        minZoom={0.05}
-        maxZoom={2.5}
+        minZoom={0.2}
+        maxZoom={2}
         panOnDrag={true}
         zoomOnPinch={true}
         nodesDraggable={false}

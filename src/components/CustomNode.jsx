@@ -16,7 +16,7 @@ function CustomNode({ data }) {
         '--node-text': palette.text,
         '--node-accent': palette.accent,
       }}
-      title={isParent ? 'Click to expand · Double-click to open in Excel' : 'Double-click to open in Excel'}
+      title={isParent ? 'Click to expand · Double-click to open in Drive' : 'Double-click to open in Drive'}
     >
       {/* Left handle */}
       <Handle
