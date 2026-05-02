@@ -16,7 +16,7 @@ const nodeTypes = { custom: CustomNode };
 
 /* ── Responsive layout presets ── */
 const LAYOUT_PRESETS = {
-  desktop: { NODE_W: 280, NODE_H: 64, H_GAP: 160, V_GAP: 24 },
+  desktop: { NODE_W: 320, NODE_H: 64, H_GAP: 160, V_GAP: 24 },
   tablet:  { NODE_W: 240, NODE_H: 56, H_GAP: 120,  V_GAP: 20 },
   mobile:  { NODE_W: 200, NODE_H: 52, H_GAP: 100,  V_GAP: 16 },
 };
@@ -137,6 +137,7 @@ function buildLayout(expandedSet, layoutCfg = LAYOUT_PRESETS.desktop) {
     data: {
       label: n.label,
       count: n.count,
+      amount: n.amount,
       color: n.color,
       link: n.link,
       nodeId: n.id,

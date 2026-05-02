@@ -225,7 +225,7 @@ body,
 
 .custom-node {
   position: relative;
-  width: 280px;
+  width: 320px;
   height: 64px;
   padding: 0 16px;
   border-radius: var(--radius);

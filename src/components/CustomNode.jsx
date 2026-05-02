@@ -51,7 +51,7 @@ function CustomNode({ data }) {
           </span>
           {data.count != null && (
             <span className="node-count">
-              {data.count.toLocaleString()}
+              {data.count.toLocaleString()} {data.amount && `(₹${data.amount})`}
             </span>
           )}
         </div>
