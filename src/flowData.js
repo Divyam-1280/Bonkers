@@ -132,6 +132,206 @@ export const nodeData = [
     parentId: 'dto-created',
   },
 
+  /* ── Level 3: COD/Prepaid children of DTO Cancelled ── */
+  {
+    id: 'dto-cancelled-cod',
+    label: 'By COD',
+    count: 53,
+    amount: '55,866',
+    link: 'https://drive.google.com/open?id=1Ndx40AEjodoTmQmmtRVbB_tNbn7UnJiz',
+    color: 'sky',
+    parentId: 'dto-cancelled',
+  },
+  {
+    id: 'dto-cancelled-prepaid',
+    label: 'By Prepaid',
+    count: 158,
+    amount: '1,54,516',
+    link: 'https://drive.google.com/open?id=1H2-OLENnajVRGGiuxGwDq1ucITe0UHBh',
+    color: 'pink',
+    parentId: 'dto-cancelled',
+  },
+
+  /* ── Level 3: COD/Prepaid children of DTO ── */
+  {
+    id: 'dto-cod',
+    label: 'By COD',
+    count: 2,
+    amount: '1,573',
+    link: 'https://drive.google.com/open?id=1Cs0A_RxoOKynTxSntciEy7VOdDuLvxtK',
+    color: 'sky',
+    parentId: 'dto',
+  },
+  {
+    id: 'dto-prepaid',
+    label: 'By Prepaid',
+    count: 6,
+    amount: '6,661',
+    link: 'https://drive.google.com/open?id=1qVUvhsTmhOrEyx4JxAzAxQNRf2OYw0tR',
+    color: 'pink',
+    parentId: 'dto',
+  },
+
+  /* ── Level 3: COD/Prepaid children of DTO Intransit ── */
+  {
+    id: 'dto-intransit-cod',
+    label: 'By COD',
+    count: 623,
+    amount: '6,75,192',
+    link: 'https://drive.google.com/open?id=1P19pEf86C6v62ArTrTQcX9OjXSV1O4Fp',
+    color: 'sky',
+    parentId: 'dto-intransit',
+  },
+  {
+    id: 'dto-intransit-prepaid',
+    label: 'By Prepaid',
+    count: 1846,
+    amount: '18,23,315',
+    link: 'https://drive.google.com/open?id=18gg3dDdq0dYv5J7PGUdv8fflEpQ-0yd7',
+    color: 'pink',
+    parentId: 'dto-intransit',
+  },
+
+  /* ── Level 3: COD/Prepaid children of DTO Lost ── */
+  {
+    id: 'dto-lost-cod',
+    label: 'By COD',
+    count: 1,
+    amount: '889',
+    link: 'https://drive.google.com/open?id=1TQZcXx9kdWQaBW3q8jeL7kMjoygW2SIx',
+    color: 'sky',
+    parentId: 'dto-lost',
+  },
+  {
+    id: 'dto-lost-prepaid',
+    label: 'By Prepaid',
+    count: 8,
+    amount: '7,674',
+    link: 'https://drive.google.com/open?id=1af9DBikEG0oO8grCDxcoX36MNP_3AS21',
+    color: 'pink',
+    parentId: 'dto-lost',
+  },
+
+  /* ── Level 3: COD/Prepaid children of DTO Return Received ── */
+  {
+    id: 'dto-return-received-cod',
+    label: 'By COD',
+    count: 3328,
+    amount: '35,96,386',
+    link: 'https://drive.google.com/open?id=1qelGff3FEEFXRiMutlxSQFIsMUP3C4XP',
+    color: 'sky',
+    parentId: 'dto-return-received',
+  },
+  {
+    id: 'dto-return-received-prepaid',
+    label: 'By Prepaid',
+    count: 11429,
+    amount: '1,13,61,879',
+    link: 'https://drive.google.com/open?id=1v4_51wD1noX-hnjHm9WN2ae3DNQHHd-f',
+    color: 'pink',
+    parentId: 'dto-return-received',
+  },
+
+  /* ── Level 3: COD/Prepaid children of DTO Delivered-Return Cancelled ── */
+  {
+    id: 'dto-delivered-return-cancelled-cod',
+    label: 'By COD',
+    count: 371,
+    amount: '3,99,867',
+    link: 'https://drive.google.com/open?id=1OrFpdd-hLqyupf2u87VvCO9jw3eI_PVy',
+    color: 'sky',
+    parentId: 'dto-delivered-return-cancelled',
+  },
+  {
+    id: 'dto-delivered-return-cancelled-prepaid',
+    label: 'By Prepaid',
+    count: 916,
+    amount: '9,11,145',
+    link: 'https://drive.google.com/open?id=1wpHkFKO6sRRrNwAD6HGxAg4TykRdpaa4',
+    color: 'pink',
+    parentId: 'dto-delivered-return-cancelled',
+  },
+
+  /* ── Level 2: COD/Prepaid children of Total Fulfillable/Unfulfillable/Created ── */
+  {
+    id: 'fulfillable-cod',
+    label: 'By COD',
+    count: 1583,
+    amount: '1,69,753',
+    link: 'https://drive.google.com/open?id=1yYEa3wyeR2giO2U4ZNNAQNCPM9GU1Ptm',
+    color: 'sky',
+    parentId: 'fulfillable',
+  },
+  {
+    id: 'fulfillable-prepaid',
+    label: 'By Prepaid',
+    count: 662,
+    amount: '24,019',
+    link: 'https://drive.google.com/open?id=1FvkYgoUl3wgkD3T4-urAvULj4ZEQ9-Gb',
+    color: 'pink',
+    parentId: 'fulfillable',
+  },
+
+  /* ── Level 2: COD/Prepaid children of Cancelled Before Shipment ── */
+  {
+    id: 'cancelled-before-shipment-cod',
+    label: 'By COD',
+    count: 7641,
+    amount: '5,18,093',
+    link: 'https://drive.google.com/open?id=1v0unVyl54IW4imvcm2XDpecf-XK27o5g',
+    color: 'sky',
+    parentId: 'cancelled-before-shipment',
+  },
+  {
+    id: 'cancelled-before-shipment-prepaid',
+    label: 'By Prepaid',
+    count: 860,
+    amount: '98,374',
+    link: 'https://drive.google.com/open?id=1EHLZ4L7hmTSsLanhGOORM7V4iuTW1inC',
+    color: 'pink',
+    parentId: 'cancelled-before-shipment',
+  },
+
+  /* ── Level 2: COD/Prepaid children of Total Intransit ── */
+  {
+    id: 'total-intransit-cod',
+    label: 'By COD',
+    count: 791,
+    amount: '7,48,435',
+    link: 'https://drive.google.com/open?id=1OvGPEelbNGlS214-xqOc329oZarDGXIi',
+    color: 'sky',
+    parentId: 'total-intransit',
+  },
+  {
+    id: 'total-intransit-prepaid',
+    label: 'By Prepaid',
+    count: 427,
+    amount: '4,26,236',
+    link: 'https://drive.google.com/open?id=1sgsz-vTMPk1N8NXeqAnpDFTuxTjCHEfb',
+    color: 'pink',
+    parentId: 'total-intransit',
+  },
+
+  /* ── Level 2: COD/Prepaid children of Total Lost ── */
+  {
+    id: 'total-lost-cod',
+    label: 'By COD',
+    count: 13,
+    amount: '15,503',
+    link: 'https://drive.google.com/open?id=1YulZVxZYSTo2YtVbZbpPlXDirEpgeFfx',
+    color: 'sky',
+    parentId: 'total-lost',
+  },
+  {
+    id: 'total-lost-prepaid',
+    label: 'By Prepaid',
+    count: 32,
+    amount: '25,583',
+    link: 'https://drive.google.com/open?id=1oL3yAajK67l3HbMb7QAHVIYfJNrlpkml',
+    color: 'pink',
+    parentId: 'total-lost',
+  },
+
   /* ── Level 2 children of RTO Created ── */
   {
     id: 'rto-lost',
@@ -168,6 +368,86 @@ export const nodeData = [
     link: 'https://docs.google.com/spreadsheets/d/1UeQe6HDi2acYFIbfK38ruhjwPXlYTXCH/edit?usp=sharing&ouid=108625963842783784299&rtpof=true&sd=true',
     color: 'rose',
     parentId: 'rto-created',
+  },
+
+  /* ── Level 3: COD/Prepaid children of RTO Lost ── */
+  {
+    id: 'rto-lost-cod',
+    label: 'By COD',
+    count: 27,
+    amount: '30,237',
+    link: 'https://drive.google.com/open?id=1LPiOwWqOENrvnXs_AbdSVtQQNNfF-ira',
+    color: 'sky',
+    parentId: 'rto-lost',
+  },
+  {
+    id: 'rto-lost-prepaid',
+    label: 'By Prepaid',
+    count: 1,
+    amount: '1,237',
+    link: 'https://drive.google.com/open?id=1l7Rxx3mnDqow05I-x7bDeUH2fbsvHjDz',
+    color: 'pink',
+    parentId: 'rto-lost',
+  },
+
+  /* ── Level 3: COD/Prepaid children of RTO Received ── */
+  {
+    id: 'rto-received-cod',
+    label: 'By COD',
+    count: 6341,
+    amount: '62,68,782',
+    link: 'https://drive.google.com/open?id=1aXJ4jiYFPjj9SapRTa2VAWCRGIsIwSrE',
+    color: 'sky',
+    parentId: 'rto-received',
+  },
+  {
+    id: 'rto-received-prepaid',
+    label: 'By Prepaid',
+    count: 580,
+    amount: '5,13,373',
+    link: 'https://drive.google.com/open?id=1rU5CaXpvuANa40tO5NSMogLl2hMNZBCb',
+    color: 'pink',
+    parentId: 'rto-received',
+  },
+
+  /* ── Level 3: COD/Prepaid children of RTO Intransit/Out for delivery ── */
+  {
+    id: 'rto-intransit-ofd-cod',
+    label: 'By COD',
+    count: 845,
+    amount: '8,59,367',
+    link: 'https://drive.google.com/open?id=1qkjB9-Xp__yDWDVdOa8MDsZR1mFXDv-6',
+    color: 'sky',
+    parentId: 'rto-intransit-ofd',
+  },
+  {
+    id: 'rto-intransit-ofd-prepaid',
+    label: 'By Prepaid',
+    count: 62,
+    amount: '56,217',
+    link: 'https://drive.google.com/open?id=1h_xhiRis2wMiKZx9xTeaQlO6kVtxJrp5',
+    color: 'pink',
+    parentId: 'rto-intransit-ofd',
+  },
+
+  /* ── Level 3: COD/Prepaid children of Delivered RTO Cancelled ── */
+  {
+    id: 'delivered-rto-cancelled-cod',
+    label: 'By COD',
+    count: 0,
+    amount: '0',
+    link: 'https://drive.google.com/open?id=15thngni0G-G37jV7wdiO4Ocv0DPa0-Ln',
+    color: 'sky',
+    parentId: 'delivered-rto-cancelled',
+  },
+  {
+    id: 'delivered-rto-cancelled-prepaid',
+    label: 'By Prepaid',
+    count: 2,
+    amount: '1,417',
+    link: 'https://drive.google.com/open?id=1vRRAdJWoF-wFtmGfWv4q0BTpn57SioYh',
+    color: 'pink',
+    parentId: 'delivered-rto-cancelled',
   },
 ];
 
@@ -220,6 +500,18 @@ export const colorMap = {
     border: '#0d9488',
     text: '#134e4a',
     accent: '#0f766e',
+  },
+  sky: {
+    bg: '#e0f2fe',
+    border: '#0ea5e9',
+    text: '#0c4a6e',
+    accent: '#0284c7',
+  },
+  pink: {
+    bg: '#fce7f3',
+    border: '#ec4899',
+    text: '#831843',
+    accent: '#db2777',
   },
 };
 
