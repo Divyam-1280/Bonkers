@@ -332,6 +332,26 @@ export const nodeData = [
     parentId: 'total-lost',
   },
 
+  /* ── Level 2: COD/Prepaid children of Total Delivered ── */
+  {
+    id: 'total-delivered-cod',
+    label: 'By COD',
+    count: 29955,
+    amount: '2,85,15,738',
+    link: 'https://docs.google.com/spreadsheets/d/15thngni0G-G37jV7wdiO4Ocv0DPa0-Ln/edit?usp=drive_link&ouid=108625963842783784299&rtpof=true&sd=true',
+    color: 'sky',
+    parentId: 'total-delivered',
+  },
+  {
+    id: 'total-delivered-prepaid',
+    label: 'By Prepaid',
+    count: 73611,
+    amount: '6,50,59,057',
+    link: 'https://docs.google.com/spreadsheets/d/1EcKFxRPsNMvFc23YZ6xdZmT4HRmeRe2Z/edit?usp=drive_link&ouid=108625963842783784299&rtpof=true&sd=true',
+    color: 'pink',
+    parentId: 'total-delivered',
+  },
+
   /* ── Level 2 children of RTO Created ── */
   {
     id: 'rto-lost',
@@ -436,7 +456,7 @@ export const nodeData = [
     label: 'By COD',
     count: 0,
     amount: '0',
-    link: 'https://drive.google.com/open?id=15thngni0G-G37jV7wdiO4Ocv0DPa0-Ln',
+    link: '',
     color: 'sky',
     parentId: 'delivered-rto-cancelled',
   },
